@@ -1,29 +1,30 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import * as actions from '../actions';
 import {Link} from "react-router-dom";
+import Payments from "./Payments";
 
 class Header extends Component {
 
     renderContent = () => {
         switch (this.props.auth) {
             case null:
-                return ;
+                return;
             case false:
                 return (
                   <li><a href="/auth/google">Sign in with google</a></li>
                 );
             default:
-                return (
-                  <li><a href="/api/logout">Log out </a> </li>
-                );
+                return [
+                    <li key="1"><Payments/></li>,
+                    <li key="2" style={{margin: '0 10px'}}>Credits: {this.props.auth.credits}</li>,
+                    <li key="3"><a href="/api/logout">Log out </a></li>
+                ];
 
 
         }
     };
 
     render() {
-        console.log(this.props);
         return (
           <div>
               <nav>
