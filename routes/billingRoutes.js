@@ -2,7 +2,6 @@ const keys = require('../config/keys');
 const stripe = require("stripe")(keys.stripeSK);
 const requireLogin = require("../middlewares/requireLogin");
 
-console.log("biiling routes!");
 module.exports = app => {
     app.post("/api/stripe", requireLogin, async (req, res) => {
         const charge = await stripe.charges.create({
